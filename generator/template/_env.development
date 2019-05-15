@@ -1,0 +1,5 @@
+#
+# Api 相关
+# HOST   -> Api 接口地址，若无需跨域请求，可不设置该值
+#
+VUE_APP_API_HOST=http://localhost:3000
