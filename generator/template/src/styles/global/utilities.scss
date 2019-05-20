@@ -115,22 +115,22 @@
 
 // Font-size
 .fz-xs {
-  font-size: $font--size-xs !important;
+  font-size: $--font-size-extra-small !important;
 }
 .fz-sm {
-  font-size: $font--size-sm !important;
+  font-size: $--font-size-small !important;
 }
 .fz-base {
-  font-size: $font--size-base !important;
+  font-size: $--font-size-base !important;
 }
 .fz-lg {
-  font-size: $font--size-lg !important;
+  font-size: $--font-size-medium !important;
 }
 .fz-xl {
-  font-size: $font--size-xl !important;
+  font-size: $--font-size-large !important;
 }
 .fz-xxl {
-  font-size: $font--size-xxl !important;
+  font-size: $--font-size-extra-large !important;
 }
 
 // Text
@@ -218,7 +218,7 @@
 
 // Background
 .bg-white {
-  background-color: $color--white !important;
+  background-color: $--color-white !important;
 }
 .bg-transparent {
   background-color: transparent !important;

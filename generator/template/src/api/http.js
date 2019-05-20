@@ -18,16 +18,40 @@ const http = axios.create({
  */
 http.interceptors.request.use(config => {
   // 1. 注入 token
-  auth.token && (config.headers["Authorization"] = auth.token);
+  auth.token && (config.headers.common["Authorization"] = auth.token);
 }, Promise.reject);
 
 /**
  * @description 拦截响应，统一处理非业务错误
+ * @returns { code: ==0, message: '请求成功！', data: Object }
+ * @returns { code: >=0, message: '请求失败！', data: Object }
  */
 http.interceptors.response.use(
-  res => res,
+  // 直接返回后端数据
+  res => {
+    const { data } = res;
+    return {
+      data,
+      code: 0,
+      message: data.message || "请求成功！"
+    };
+  },
   error => {
-    return Promise.reject(error);
+    const err = {};
+
+    if (!error.response) {
+      const { status = 500, message = "网络错误！" } = error;
+      err["code"] = status;
+      err["message"] = message;
+    } else {
+      const { status, data } = error.response;
+      const { message = "请求失败！" } = data;
+      err["data"] = data;
+      err["code"] = status;
+      err["message"] = message;
+    }
+
+    return Promise.reject(err);
   }
 );
 

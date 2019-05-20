@@ -1,1 +1,16 @@
-// layout footer
+// Footer
+.cui-footer {
+  position: absolute;
+  bottom: 0;
+  left: $--aside-width;
+  right: 0;
+  padding: 10px $--main-content-padding;
+  text-align: center;
+  line-height: 1;
+  p {
+    margin: 10px 0;
+  }
+  a {
+    padding: 0 5px 0;
+  }
+}

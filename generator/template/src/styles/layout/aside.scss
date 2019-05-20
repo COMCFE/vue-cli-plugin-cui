@@ -1,1 +1,10 @@
-// layout aside
+// Aside
+.cui-aside {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: $--aside-width;
+  height: 100%;
+  background-color: $--aside-background-color;
+  color: $--color-white;
+}

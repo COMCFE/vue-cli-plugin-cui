@@ -1,2 +1,2 @@
-import layoutWrapper from "./layout-wrapper";
-export default layoutWrapper;
+import layout from "./cui-wrapper";
+export default layout;

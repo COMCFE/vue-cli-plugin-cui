@@ -1,7 +1,7 @@
 <template lang="pug">
-  div
-    el-button(size='large', type='text', @click='backHome()') 返回首页
-    el-button(size='large', type='text', @click='backPrev()') 返回上一页({{ second }}s)
+  el-button-group
+    el-button(size='large', type='text', @click='backHomeHandle()') 返回首页
+    el-button(size='large', type='text', @click='backPrevHandle()') 返回上一页({{ second }}s)
 
 </template>
 
@@ -15,23 +15,21 @@ export default {
     };
   },
   methods: {
-    backHome() {
-      this.$router.replace({
-        name: this.$config.homeName
-      });
+    backHomeHandle() {
+      this.$router.replace({ name: this.$config.routeHomeName });
     },
-    backPrev() {
+    backPrevHandle() {
       this.$router.go(-1);
     }
   },
   mounted() {
     this.timer = setInterval(() => {
-      if (this.second === 0) this.backPrev();
+      if (this.second === 0) this.backPrevHandle();
       else this.second--;
     }, 1000);
   },
   beforeDestroy() {
-    clearInterval(this.timer);
+    this.timer && clearInterval(this.timer);
   }
 };
 </script>

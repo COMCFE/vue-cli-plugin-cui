@@ -1,16 +1,18 @@
 <template lang="pug">
-  .error-page
-    .content-con
+  .page-error
+    .error__content
       img(:src='src', :alt='code')
-      .text-con
+      .error__text
         h4 {{ code }}
         h5 {{ desc }}
-      back-btn-group.back-btn-group
+      back-btn-group.error__btn-group
 
 </template>
 
 <script>
 import backBtnGroup from "./back-btn-group";
+import "./error.scss";
+
 export default {
   name: "error_content",
   components: {

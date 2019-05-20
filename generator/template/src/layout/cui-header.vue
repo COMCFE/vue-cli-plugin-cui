@@ -1,8 +1,8 @@
 <template lang="pug">
-  header.layout-header layout-header
+  header.cui-header cui-header
 </template>
 <script>
 export default {
-  name: "layoutHeader"
+  name: "cuiHeader"
 };
 </script>

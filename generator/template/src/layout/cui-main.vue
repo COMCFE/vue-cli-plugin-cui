@@ -1,8 +1,8 @@
 <template lang="pug">
-  footer.layout-footer layout-footer
+  main.cui-main cui-main
 </template>
 <script>
 export default {
-  name: "layoutFooter"
+  name: "cuiMain"
 };
 </script>

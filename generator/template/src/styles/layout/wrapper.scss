@@ -1,1 +1,13 @@
 // layout wrapper
+.cui-wrapper {
+  width: auto;
+  margin-left: $--aside-width;
+  padding-bottom: $--footer-height;
+  min-width: $--wrapper-min-width;
+  background-color: $--background-color-base;
+  transition: all 0.2s;
+}
+
+.cui-wrapper.cui-aside--fold {
+  margin-left: $--aside-width-fold;
+}

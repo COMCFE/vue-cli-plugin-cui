@@ -1,8 +1,8 @@
 <template lang="pug">
-  aside.layout-aside layout-aside
+  aside.cui-aside cui-aside
 </template>
 <script>
 export default {
-  name: "layoutAside"
+  name: "cuiAside"
 };
 </script>

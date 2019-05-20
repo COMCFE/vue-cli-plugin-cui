@@ -4,7 +4,11 @@
 export default {
   namespaced: true,
   state: {
-    //
+    assideFold: false
   },
-  mutations: {}
+  mutations: {
+    updateAssideFold(state, status) {
+      state.assideFold = status;
+    }
+  }
 };

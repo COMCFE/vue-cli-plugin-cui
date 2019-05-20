@@ -1,1 +1,80 @@
 // page login
+.page-login {
+  height: 100vh;
+  background-color: transparent;
+  overflow-x: hidden;
+  overflow-y: auto;
+  &::before,
+  &::after {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
+  }
+  &::before {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-blend-mode: multiply;
+    animation: anmi-bg 30s linear alternate infinite;
+    background-image: url("~@/assets/images/login_bg.png");
+  }
+  &::after {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .login-wrapper {
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 50px 20px 150px;
+    text-align: center;
+  }
+
+  .cui-page-header {
+    padding: 15px;
+    color: $--color-white;
+    .cui-brand {
+      margin: 0 0 15px;
+      letter-spacing: 2px;
+      font-size: 38px;
+      text-transform: uppercase;
+    }
+  }
+
+  .cui-page-main {
+    width: 420px;
+    padding: 15px 30px;
+    background-color: $--color-white;
+    box-shadow: $--box-shadow-dark;
+
+    .el-input__inner {
+      border-radius: 20px;
+    }
+
+    .el-form-item__error {
+      padding-top: 6px;
+      left: 13px;
+    }
+  }
+
+  .cui-page-footer {
+    color: $--color-white;
+  }
+}
+
+@keyframes anmi-bg {
+  form {
+    transform: scale(1, 1);
+  }
+
+  to {
+    transform: scale(1.2, 1.2);
+  }
+}

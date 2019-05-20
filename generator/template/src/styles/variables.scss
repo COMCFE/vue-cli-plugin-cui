@@ -1,1 +1,81 @@
-// variables
+@import "~element-ui/packages/theme-chalk/src/common/var";
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: "~element-ui/lib/theme-chalk/fonts";
+
+/* Typography
+-------------------------- */
+$--font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+  "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+
+/* Border
+-------------------------- */
+$--border-radius: 10px;
+
+// Background
+/// color|1|Background Color|4
+$--background-color-base: #f2f2f2;
+
+/* Color
+-------------------------- */
+/// color|1|Brand Color|0
+$--color-primary: #7c4dff;
+// /// color|1|Secondary Color|1
+// $--color-success: #28bd18;
+// /// color|1|Secondary Color|1
+// $--color-warning: #ff950c;
+// /// color|1|Secondary Color|1
+// $--color-danger: #f05f5f;
+// /// color|1|Secondary Color|1
+// $--color-info: #909399;
+//
+// /// color|1|Font Color|2
+// $--color-text-primary: #333;
+// /// color|1|Font Color|2
+// $--color-text-regular: #666;
+// /// color|1|Font Color|2
+// $--color-text-secondary: #999;
+// /// color|1|Font Color|2
+// $--color-text-placeholder: #bbb;
+
+/* Button
+-------------------------- */
+// 按钮原角
+$--button-border-radius: 20px;
+$--button-medium-border-radius: $--button-border-radius;
+$--button-small-border-radius: $--button-border-radius;
+$--button-mini-border-radius: $--button-border-radius;
+
+/* Table
+-------------------------- */
+$--table-row-hover-background-color: #f7f8fd;
+$--table-header-background-color: #eef3ff;
+$--table-current-row-background-color: #f7f8fd;
+
+/* Tooltip
+-------------------------- */
+$--tooltip-fill: rgba($--color-text-primary, 0.8);
+$--tooltip-border-color: transparent;
+
+/* Wrapper
+-------------------------- */
+$--wrapper-min-width: 810px;
+
+/* Header
+-------------------------- */
+$--header-height: 40px;
+$--header-background-color: $--color-white;
+
+/* Aside
+-------------------------- */
+$--aside-width: 90px;
+$--aside-width-fold: 90px;
+$--aside-background-color: #444;
+
+/* Main
+-------------------------- */
+$--main-content-padding: 20px;
+
+/* Footer
+-------------------------- */
+$--footer-height: 54px;

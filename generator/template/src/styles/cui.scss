@@ -1,9 +1,13 @@
 @import "variables";
 
+// Element
+@import "~element-ui/packages/theme-chalk/src/index";
+
 // Global
 @import "global/normalize";
-// @import "global/reset";
-// @import "global/utilities";
+@import "global/reset";
+@import "global/utilities";
+@import "global/component";
 
 // Layout
 @import "layout/index";
