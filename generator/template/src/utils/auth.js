@@ -1,5 +1,9 @@
+import router from "@/router";
 import storage from "./storage";
-import { SESSION_TOKEN } from "@/config";
+import { noop } from "@/utils";
+import { login } from "@/api/auth";
+import { MessageBox } from "element-ui";
+import { SESSION_TOKEN, ROUTE_LOGIN } from "@/config";
 
 class Auth {
   constructor() {}
@@ -15,10 +19,40 @@ class Auth {
   }
 
   /**
+   * @description 用户登录
+   */
+  login(param) {
+    return login(param)
+      .then(
+        ({
+          message: defaultMsg = "登录成功！",
+          data: { message = defaultMsg, token }
+        }) => {
+          this.token = token;
+          return message;
+        }
+      )
+      .catch(
+        ({
+          message: defaultMsg = "登录失败！",
+          data: { message } = { message: defaultMsg }
+        }) => Promise.reject(message)
+      );
+  }
+
+  /**
    * @description 用户登出操作时，清空 token
    */
-  logout() {
-    this.token = "";
+  logout(message = "确认退出当前登录账户？", title = "确认登出", options) {
+    MessageBox.confirm(message, title, {
+      type: "warning",
+      ...options
+    })
+      .then(() => {
+        this.token = "";
+        router.push({ name: ROUTE_LOGIN });
+      })
+      .catch(noop);
   }
 }
 

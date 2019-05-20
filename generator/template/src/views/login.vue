@@ -9,11 +9,10 @@
         h3.page-title 登录
         el-form(:model='dataForm', :rules='dataRule', ref='dataForm', @keyup.enter.native='dataFormSubmitHandle()')
           el-form-item(prop='account')
-            el-input(v-model='dataForm.account', type="text", placeholder="邮箱/手机号码", prefix-icon='el-icon-user')
+            el-input(v-model='dataForm.account', type="text", @focus='clearErrorHandle()', placeholder="邮箱/手机号码", prefix-icon='el-icon-user')
           el-form-item(prop='password')
-            el-input(v-model='dataForm.password', type='password', placeholder="密码", prefix-icon='el-icon-unlock')
-          el-form-item(:error='errorMsg')
-          el-form-item
+            el-input(v-model='dataForm.password', type='password', @focus='[clearErrorHandle(), clearFormHandle("password")]', placeholder="密码", prefix-icon='el-icon-unlock')
+          el-form-item.login__submit-btn(:error='errorMsg')
             el-button.w-100(type="primary", :disabled='!canSubmit', :loading='submitting', @click="dataFormSubmitHandle()") 登录
       footer.cui-footer.cui-page-footer
         p
@@ -48,6 +47,14 @@ export default {
     }
   },
   methods: {
+    clearFormHandle(key) {
+      key
+        ? this.dataForm[key] = ""
+        : this.$refs["dataForm"].resetFields();
+    },
+    clearErrorHandle() {
+      this.errorMsg && (this.errorMsg = "");
+    },
     dataFormSubmitHandle() {
       if (this.submitting) return;
       this.submitting = true;
@@ -55,30 +62,27 @@ export default {
       this.$refs["dataForm"].validate(valid => {
         if (!valid) return false;
 
-        setTimeout(() => {
-          const data = {
-            code: 0,
-            token: "xxxxxxxxxxxxxxxxxx",
-            message: "登录成功！"
-          };
-
-          if (data.code === 0) {
-            auth.token = data.token;
+        auth
+          .login(this.dataForm)
+          .then(message => {
             this.$message({
+              message,
               duration: 1e3,
               type: "success",
-              message: data.message,
               onClose: () => {
+                const next = this.$route.query.redirect || {
+                  name: this.$config.routeHomeName
+                };
+                this.$router.replace(next);
+
                 this.submitting = false;
-                this.$router.replace(
-                  this.$route.query.redirect || {
-                    name: this.$config.routeHomeName
-                  }
-                );
               }
             });
-          }
-        }, 1e3);
+          })
+          .catch(error => {
+            this.errorMsg = error;
+            this.submitting = false;
+          });
       });
     }
   }

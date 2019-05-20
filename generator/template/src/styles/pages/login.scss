@@ -65,7 +65,18 @@
   }
 
   .cui-page-footer {
+    left: 0;
     color: $--color-white;
+  }
+
+  .login__submit-btn {
+    margin-top: 44px;
+    .el-form-item__error {
+      top: initial;
+      bottom: 100%;
+      padding-top: initial;
+      padding-bottom: 16px;
+    }
   }
 }
 
@@ -73,7 +84,6 @@
   form {
     transform: scale(1, 1);
   }
-
   to {
     transform: scale(1.2, 1.2);
   }

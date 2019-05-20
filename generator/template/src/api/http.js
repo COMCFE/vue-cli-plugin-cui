@@ -49,6 +49,15 @@ http.interceptors.response.use(
       err["data"] = data;
       err["code"] = status;
       err["message"] = message;
+
+      switch (status) {
+        case 401:
+          err["message"] = "登录失效";
+          auth.logout("登录失效，是否前往登录页重新登录？", "重新登录", {
+            confirmButtonText: "重新登录",
+            showCancelButton: false
+          });
+      }
     }
 
     return Promise.reject(err);
