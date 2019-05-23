@@ -1,5 +1,16 @@
 // Main
 .cui-main {
+  position: relative;
+  z-index: $--main-zindex;
   margin: $--main-content-padding;
   margin-bottom: 0;
+  &__iframe {
+    position: fixed;
+    border: none;
+    top: 0;
+    left: $--aside-width;
+    right: 0;
+    width: calc(100% - #{$--aside-width});
+    height: 100%;
+  }
 }

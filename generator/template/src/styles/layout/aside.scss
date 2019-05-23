@@ -3,8 +3,123 @@
   position: fixed;
   left: 0;
   top: 0;
+  bottom: 0;
+  z-index: $--aside-zindex;
   width: $--aside-width;
-  height: 100%;
   background-color: $--aside-background-color;
+  transition: width 0.2s;
+
+  &__hd {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    width: 100%;
+    height: $--header-height;
+    line-height: $--header-height;
+    text-align: center;
+    background-color: inherit;
+
+    .cui-brand {
+      display: block;
+      margin: 0;
+      color: $--color-white;
+
+      &:hover {
+        background-color: lighten($--aside-background-color, 20%);
+      }
+
+      &--sm {
+        display: none;
+      }
+    }
+  }
+
+  &__tool {
+    cursor: pointer;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: $--aside-width - 20px;
+    width: 20px;
+    height: 50px;
+    margin-top: -25px;
+    z-index: 3;
+    transition: all 0.2s ease;
+
+    &-bg {
+      width: 0;
+      height: 50px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-bottom: 9px solid transparent;
+      border-right: 13px solid #d9dee4;
+      border-top: 9px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    &-btn {
+      height: 50px;
+      position: relative;
+      right: -7px;
+      text-align: center;
+      cursor: pointer;
+      line-height: 50px;
+      transition: all 0.2s ease;
+
+      .svg-icon {
+        font-size: 15px;
+        vertical-align: text-top;
+      }
+    }
+
+    &:hover &-bg {
+      border-bottom: 8px solid transparent;
+      border-right: 20px solid #d9dee4;
+      border-top: 8px solid transparent;
+    }
+
+    &:hover &-btn {
+      left: 0;
+    }
+  }
+
+  &__hd + &__bd {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__bd {
+    margin-top: $--header-height;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+.cui-aside__menu {
+  border-right: 0;
+  width: $--aside-width;
+  background-color: inherit;
   color: $--color-white;
+
+  &-wrapper {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    box-sizing: content-box;
+    width: 100%;
+    height: 100%;
+    padding-right: 20px;
+  }
+
+  .el-menu-item {
+    color: $--color-white;
+
+    &:hover {
+      background-color: #666;
+    }
+
+    &.is-active {
+      background-color: $--color-white;
+      color: $--color-text-primary;
+    }
+  }
 }

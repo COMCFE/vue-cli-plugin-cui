@@ -4,6 +4,7 @@
   background-color: transparent;
   overflow-x: hidden;
   overflow-y: auto;
+
   &::before,
   &::after {
     position: fixed;
@@ -14,6 +15,7 @@
     z-index: -1;
     content: "";
   }
+
   &::before {
     background-size: cover;
     background-repeat: no-repeat;
@@ -22,6 +24,7 @@
     animation: anmi-bg 30s linear alternate infinite;
     background-image: url("~@/assets/images/login_bg.png");
   }
+
   &::after {
     background-color: rgba(0, 0, 0, 0.3);
   }
@@ -40,6 +43,7 @@
   .cui-page-header {
     padding: 15px;
     color: $--color-white;
+
     .cui-brand {
       margin: 0 0 15px;
       letter-spacing: 2px;
@@ -71,6 +75,7 @@
 
   .login__submit-btn {
     margin-top: 44px;
+
     .el-form-item__error {
       top: initial;
       bottom: 100%;
@@ -84,6 +89,7 @@
   form {
     transform: scale(1, 1);
   }
+
   to {
     transform: scale(1.2, 1.2);
   }

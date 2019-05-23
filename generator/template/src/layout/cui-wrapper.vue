@@ -1,13 +1,13 @@
 <template lang="pug">
   .cui-wrapper(v-cloak, ref='cui-wrapper', v-loading.fullscreen.lock="loading", :class='wrapperClassNames')
     //- 页眉
-    cui-header
+    cui-header(v-if='!isIframe')
     //- 侧边栏
     cui-aside
     //- 内容区
     cui-main
     //- 页脚
-    cui-footer
+    cui-footer(v-if='!isIframe')
 </template>
 <script>
 import cuiMain from "./cui-main";
@@ -31,11 +31,15 @@ export default {
     };
   },
   computed: {
-    ...mapState("layout", ["assideFold"]),
+    ...mapState("layout", ["asideFold"]),
     wrapperClassNames() {
       return {
-        "cui-aside--fold": this.assideFold
+        "cui-aside--fold": this.asideFold
       };
+    },
+    isIframe() {
+      const { meta } = this.$route;
+      return meta && meta.isIframe;
     }
   }
 };

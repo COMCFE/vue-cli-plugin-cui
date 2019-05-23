@@ -1,5 +1,5 @@
 /**
- * 拉取远端路由列表
+ * 通过请求获取远端路由列表
  * 也可以按照指定数据结构直接 resolve({ menus: [], perms: [] })
  */
 export default () =>
@@ -7,16 +7,16 @@ export default () =>
     resolve({
       menus: [
         {
-          id: 1,
-          icon: "test",
-          list: null,
+          perms: "test",
+          url: "/test-module",
+          order: 0,
+          id: 104,
           name: "测试页面",
-          order: 1,
-          perms: "",
+          type: 1,
+          icon: "",
           pid: 0,
           show: 1,
-          type: 1,
-          url: "/test-module"
+          list: null
         }
       ],
       perms: ["test"]

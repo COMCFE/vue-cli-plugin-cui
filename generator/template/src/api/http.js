@@ -52,7 +52,7 @@ http.interceptors.response.use(
 
       switch (status) {
         case 401:
-          err["message"] = "登录失效";
+          err["message"] = "登录失效!";
           auth.logout("登录失效，是否前往登录页重新登录？", "重新登录", {
             confirmButtonText: "重新登录",
             showCancelButton: false

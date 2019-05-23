@@ -14,13 +14,14 @@ import {
   ROUTE_LOGIN,
   ROUTE_DYNAMIC_MARK,
   SESSION_MENUS,
-  SESSION_PERMS
+  SESSION_PERMS,
+  SESSION_ROUTES
 } from "@/config";
 
 /**
  * @description 基础路由
- * 包含以下页面：
- * *登录|注册|401|500*
+ *
+ * 包含以下页面： *登录|注册|401|500*
  */
 import common from "./common";
 import getDynamicRoutes from "./dynamic";
@@ -68,7 +69,7 @@ router.beforeEach((to, from, next) => {
             import(/* webpackChunkName: 'dynamic' */ "@/views/home")
         };
         // 通配符必须在动态路由注册成功后添加，否则其后的路由无法被匹配
-        const _404 = { path: "*", redirect: "/401" };
+        const _404 = { path: "*", redirect: "/404" };
 
         main.children = [...dynamic, home];
         router.addRoutes([main, _404]);
@@ -77,9 +78,10 @@ router.beforeEach((to, from, next) => {
         // 本地存储
         storage
           .write(SESSION_MENUS, menus, true)
-          .write(SESSION_PERMS, perms, true);
+          .write(SESSION_PERMS, perms, true)
+          .write(SESSION_ROUTES, dynamic, true);
 
-        requireAuth(to) ? next({ name: ROUTE_HOME }) : next();
+        requireAuth(to) ? next(to) : next({ name: ROUTE_HOME });
       });
     }
   }
@@ -91,7 +93,8 @@ router.beforeEach((to, from, next) => {
 async function injectDynamicRoutes() {
   /** 1. 拉取动态路由列表 */
   const { menus, perms } = await getDynamicRoutes();
-  return { menus, perms, dynamic: generateRoutes(menus) };
+  const dynamic = await generateRoutes(menus);
+  return { menus, perms, dynamic };
 }
 
 /**
@@ -99,19 +102,23 @@ async function injectDynamicRoutes() {
  * @param {Array} list 数据列表
  * @param {Array} acc 路由列表
  */
-function generateRoutes(list, acc = []) {
+async function generateRoutes(list, acc = []) {
   let temp = [];
 
-  list.forEach(item => {
+  for (let i = 0; i < list.length; i++) {
+    const item = list[i];
     const { list: children } = item;
+
     // 追加 children
     if (Array.isArray(children) && children.length) {
       temp = [...temp, ...children];
     } else {
       const route = new RouteModel(item);
-      acc.push(route);
+      await route.injectComponent();
+
+      (item.compiled = route.compiled) && acc.push({ ...route });
     }
-  });
+  }
 
   temp.length && generateRoutes(temp, acc);
 

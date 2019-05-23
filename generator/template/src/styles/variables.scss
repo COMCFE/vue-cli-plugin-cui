@@ -63,19 +63,23 @@ $--wrapper-min-width: 810px;
 
 /* Header
 -------------------------- */
+$--header-zindex: 1020;
 $--header-height: 40px;
 $--header-background-color: $--color-white;
 
 /* Aside
 -------------------------- */
-$--aside-width: 90px;
-$--aside-width-fold: 90px;
+$--aside-zindex: 1020;
+$--aside-width: 180px;
+$--aside-width-fold: 64px;
 $--aside-background-color: #444;
 
 /* Main
 -------------------------- */
+$--main-zindex: 1010;
 $--main-content-padding: 20px;
 
 /* Footer
 -------------------------- */
+$--footer-zindex: 1010;
 $--footer-height: 54px;

@@ -16,3 +16,11 @@
     color: $--color-text-secondary;
   }
 }
+
+// Svg icon
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  overflow: hidden;
+}
